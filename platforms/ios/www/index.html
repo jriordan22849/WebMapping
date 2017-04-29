@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WMAP 2017</title>
+        <!--ask me for the server IP in class-->
+        <meta http-equiv="Content-Security-Policy"
+            content="default-src 'self' data: gap: https://ssl.gstatic.com
+            http://127.0.0.1:8100 http://localhost:8100
+            http://188.166.82.38:8000
+            http://188.166.82.38:8000/signup
+            https://router.project-osrm.org
+            https://*.tile.openstreetmap.org https://*.tile.osm.org
+            http://*.tile.openstreetmap.org http://*.tile.osm.org
+            'unsafe-eval';
+            style-src 'self' 'unsafe-inline';
+            script-src 'self' 'unsafe-inline';
+            media-src *">
+            <meta name="format-detection" content="telephone=no">
+                <meta name="msapplication-tap-highlight" content="no">
+                    <meta name="viewport"
+                        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+                        <link rel="stylesheet" type="text/css" href="downloads/jquery-mobile/jquery.mobile-1.4.5.min.css">
+                            <link rel="stylesheet" type="text/css" href="downloads/font-awesome-4.7.0/css/font-awesome.min.css">
+                                <link rel="stylesheet" type="text/css" href="downloads/leaflet-1.0.3/leaflet.css">
+                                    <link rel="stylesheet" type="text/css" href="downloads/leaflet.extramarkers/css/leaflet.extra-markers.min.css">
+                                        <link rel="stylesheet" type="text/css" href="css/index.css">
+                                            <link rel="stylesheet" type="text/css" href="css/style1.css">
+                                                <script src="downloads/jquery/jquery-1.12.4.js"></script>
+                                                <script src="downloads/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+                                                <script src="downloads/leaflet-1.0.3/leaflet.js"></script>
+                                                <script src="downloads/leaflet.extramarkers/js/leaflet.extra-markers.min.js"></script>
+                                                <script type="text/javascript" src="cordova.js"></script>
+                                                <script type="text/javascript" src="js/index.js"></script>
+                                                <script type="text/javascript" src="js/signup.js"></script>
+                                                <script src="plugins/cordova-plugin-geolocation/www/geolocation.js"></script>
+                                                <script src="plugins/cordova-plugin-geolocation/www/Coorinates.js"></script>
+                                                <script src="plugins/cordova-plugin-geolocation/www/Position.js"></script>
+                                                <script src="plugins/cordova-plugin-geolocation/www/PositionError.js"></script>
+                                                <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+                                                <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+                                                <link rel="stylesheet" href="leaflet-routing-machine.css" />
+                                                <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+                                                <script src="leaflet-routing-machine.js"></script>
+                                            
+    </head>
+    <body onload="onLoad();">
+        <div data-role="page" style="background-color: white" id="main-page">
+            <div id="main-div" data-role="main" class="ui-content">
+                <h1>Main Page placeholder</h1>
+            </div>
+            <div data-role="footer" data-id="main-foot" class="ui-header ui-bar-a" role="banner" data-position="fixed"
+                style="text-align:center; background-color: rgba(255,255,255,0.2);" data-tap-toggle="false">
+                <table>
+                    <tr>
+                        <td style="text-align: left; vertical-align: middle; width: 10%">
+                            <a href="#map-page" id="goto-map" class="ui-btn-mini ui-btn-inline">
+                                <span class="fa fa-map fa-2x" style="color:lightslategrey"></span>
+                            </a>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        
+
+        
+        <div data-role="page" data-dialog="true" data-close-btn="none" style="background-color: white" id="signup-page">
+            <div data-role="header" style="text-align: center; background-color: silver">
+                <span style="font-size: x-large">Signup Page</span>
+            </div>
+            <div data-role="main" class="ui-content"
+                style="align-content: center; background-color: white">
+                <form role="form">
+                    <div class="ui-field-contain">
+                        <br>
+                        <label>Enter Username: </label>
+                        <label id="label-in-username" for="in-username"><span class="fa fa-user fa-fw"></span></label>
+                        <input type="text" class="form-control" id="in-username-signup" placeholder="Enter Username">
+                         
+                        <br>
+                        <label>Enter Password </label>
+                        <label id="label-in-password" for="in-password1"><span class="fa fa-lock fa-fw"></span></label>
+                        <input type="password" class="form-control" id="in-password1" placeholder="Enter Password">
+                         
+                        <br>
+                        <label>Re-enter Password </label>
+                        <label id="label-in-password2" for="in-password2"><span class="fa fa-lock fa-fw"></span></label>
+                        <input type="password" class="form-control" id="in-password2" placeholder="Enter Password Again">
+                         
+                        <br>
+                        <label>Enter Firstname </label>
+                        <label id="label-in-name" for="in-name"><span class="fa fa-lock fa-fw"></span></label>
+                        <input type="text" class="form-control" id="in-name" placeholder="Enter Firstname">
+                         
+                        <br>
+                        <label>Enter Lastname </label>
+                        <label id="label-in-password" for="in-lastname"><span class="fa fa-lock fa-fw"></span></label>
+                        <input type="text" class="form-control" id="in-lastname" placeholder="Enter Lastname">
+                    
+                        <br>
+                        <label>Enter Email </label>
+                        <label id="label-in-email" for="in-email"><span class="fa fa-lock fa-fw"></span></label>
+                        <input type="text" class="form-control" id="in-email" placeholder="Enter Email">
+                        
+                                
+                    </div>
+                    <button id="btn-register" type="button" class="ui-btn ui-corner-all live-button"
+                        style="background-color: #669966; color: white;">
+                        <span class="fa fa-sign-in fa-lg"></span> Register
+                    </button>
+                    
+                    <button onClick = "clearSignup()" type="button" class="ui-btn ui-corner-all live-button"
+                        style="background-color: #669966; color: white;">
+                        <span class="fa fa-sign-in fa-lg"></span> Clear
+                    </button>
+
+                </form>
+                
+                <button id="sp-logout"  onClick = "signUpPressed()" type="button" class="ui-btn ui-corner-all live-button"
+                    style="background-color: #669966; color: white;">
+                    <span class="fa fa-sign-in fa-lg"></span> Login In Page
+                </button>
+                
+                
+            </div>
+        </div>
+        
+    
+
+        
+        <div data-role="page" style="background-color: white" id="map-page">
+            <div data-role="header" style="text-align:center; background-color: rgba(255,255,255,0.8);" data-position="fixed"
+                data-tap-toggle="false">
+                <table style="width: 100%">
+                    <tr>
+                        <td style="text-align: left; vertical-align: middle; width: 85%">
+                            <span style="font-size: large">Friend Finder</span>
+                        </td>
+                        <td style="text-align: right; vertical-align: middle; width: 15%">
+                            <span class="sp-username"></span>&nbsp;
+                            <span class="plain-a" id="sp-logout">
+                                <i class='fa fa-sign-out fa-3x'></i></span>
+                        </td>
+                        <td>
+                            <button id="sp-logout"  onClick = "logoutPressed()"type="button" class="ui-btn ui-corner-all live-button"
+                                style="background-color: #669966; color: white;">
+                                <span class="fa fa-sign-in fa-lg"></span> Log Out
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            
+            <div id="map-var" style="width: 100%; height: 100%%;"></div>
+            <div data-role="footer" style="text-align:center; background-color: rgba(255,255,255,0.2);" data-position="fixed"
+                data-tap-toggle="true">
+                
+                <div id = "labelToTap" style="display: none;">
+                    <label>Tap on the map to location for the event</label>
+                </div>
+                
+                <div id = "button-area-map">
+                <button id="pagecreate" onClick = "getCurrentlocation()" type="button" class="ui-btn ui-corner-all live-button"
+                    style="background-color: #669966; color: white;">
+                    <span class="fa fa-sign-in fa-lg"></span> Update My Position
+                </button>
+                
+                <button id="friend-list"  type="button" class="ui-btn ui-corner-all live-button"
+                    style="background-color: #669966; color: white;">
+                    <span class="fa fa-sign-in fa-lg"></span> My Friends List
+                </button>
+                
+                <button id="sdd-event-to-map"  type="button" class="ui-btn ui-corner-all live-button"
+                    style="background-color: #669966; color: white;">
+                    <span class="fa fa-sign-in fa-lg"></span> Add Event
+                </button>
+                
+                <button id="show-events"  type="button" class="ui-btn ui-corner-all live-button"
+                    style="background-color: #669966; color: white;">
+                    Display Events
+                </button>
+
+                <input type="text" style="width: 150px;" class="form-control" id="user-search-field" placeholder="Search by name">
+                <button style="background-color: rgb(255, 149, 0)" id="search-user">Search</button></input>
+                </div>
+                
+                
+
+                    <button style="background-color: red" id="clear-search-user">Clear</button?
+   
+                <span id="leaflet-copyright" style="font-size: xx-small"></span>
+            </div>
+        </div>
+        
+
+        <div data-role="page" data-dialog="true" data-close-btn="none" style="background-color: white" id="login-page">
+            <div data-role="header" style="text-align: center; background-color: silver">
+                <span style="font-size: x-large">Login</span>
+            </div>
+            <div data-role="main" class="ui-content"
+                style="align-content: center; background-color: white">
+                <form role="form">
+                    <div class="ui-field-contain">
+                        <label id="label-in-username" for="in-username"><span class="fa fa-user fa-fw"></span></label>
+                        <input type="text" class="form-control" id="in-username" placeholder="Username">
+                            <label id="label-in-password" for="in-password"><span class="fa fa-lock fa-fw"></span></label>
+                            <input type="password" class="form-control" id="in-password" placeholder="Password">
+                                </div>
+                    <button id="btn-login" type="button" class="ui-btn ui-corner-all live-button"
+                        style="background-color: #669966; color: white;">
+                        <span class="fa fa-sign-in fa-lg"></span> Log In
+                    </button>
+                </form>
+                
+                <button id="sp-logout"  onClick = "signUpPressed()" type="button" class="ui-btn ui-corner-all live-button"
+                    style="background-color: #669966; color: white;">
+                    <span class="fa fa-sign-in fa-lg"></span> Sign Up
+                </button>
+                
+                
+            </div>
+        </div>
+        
+        
+        
+        <div data-role="page" data-dialog="true" data-close-btn="none" style="background-color: white" id="friend-page">
+            <div data-role="header" style="text-align: center; background-color: silver">
+                <span style="font-size: x-large">My Friend List</span>
+                <button onClick = "addGroup()" class = "ui-icon-plus">+</button>
+            </div>
+            <div data-role="main" class="ui-content"
+                style="align-content: center; background-color: white">
+                
+                <table id = "friend-list-table">
+                    <tr>
+                        <td style="text-align: left; vertical-align: middle; width: 10%">
+                            <a href="#map-page" id="goto-map" class="ui-btn-mini ui-btn-inline">
+                                <span class="fa fa-map fa-2x" style="color:lightslategrey"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                
+                
+                <div id = "group-names">
+                    
+                </div>
+
+
+                <button id="sp-logout"  onClick = "mapPageButton()" type="button" class="ui-btn ui-corner-all live-button"
+                    style="background-color: #669966; color: white;">
+                    <span class="fa fa-sign-in fa-lg"></span> Map Page
+                </button>
+                
+                
+            </div>
+        </div>
+        
+        
+        <div data-role="page" data-dialog="true" data-close-btn="none" style="background-color: white" id="event-page">
+            <div data-role="header" style="text-align: center; background-color: silver">
+                <span id = "header-for-event"style="font-size: x-large">Event</span>
+            </div>
+            <div data-role="main" class="ui-content"
+                style="align-content: center; background-color: white">
+                
+
+                
+                <div id = "event-information">
+                    
+                </div>
+                
+            
+                <button id="sp-logout"  onClick = "mapPageButton()" type="button" class="ui-btn ui-corner-all live-button"
+                    style="background-color: #669966; color: white;">
+                    <span class="fa fa-sign-in fa-lg"></span> Map Page
+                </button>
+                
+                
+            </div>
+        </div>
+        
+        <div data-role="page" data-dialog="true" data-close-btn="none" style="background-color: white" id="friend-list-page">
+            <div data-role="header" style="text-align: center; background-color: silver">
+                <span id = "friend-group-name" style="font-size: x-large">Group name</span>
+                <button onClick = "addFriendToGroup()" class = "ui-icon-plus">+</button>
+            </div>
+            <div data-role="main" class="ui-content"
+                style="align-content: center; background-color: white">
+                <span  style="font-size: x-large">Group Memebrs: </span>
+                <table id = "friend-list-table">
+                    <tr>
+                        <td style="text-align: left; vertical-align: middle; width: 10%">
+                            <a href="#map-page" id="goto-map" class="ui-btn-mini ui-btn-inline">
+                                <span class="fa fa-map fa-2x" style="color:lightslategrey"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                
+                
+                <div id = "group-names-members">
+                    
+                </div>
+                
+                <button id="sp-logout"  onClick = "displayFriendsOnMap()" type="button" class="ui-btn ui-corner-all live-button"
+                    style="background-color: rgb(255, 149, 0); color: white;">
+                    <span class="fa fa-sign-in fa-lg"></span> View Friends on Map
+                </button>
+                
+                
+                <button id="sp-logout"  onClick = "navigateToGroups()" type="button" class="ui-btn ui-corner-all live-button"
+                    style="background-color: #669966; color: white;">
+                    <span class="fa fa-sign-in fa-lg"></span> Friend Groups Page
+                </button>
+                
+                
+            </div>
+        </div>
+    </body>
+</html>
